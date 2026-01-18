@@ -1,0 +1,23 @@
+算法: 计算朋友圈数量
+输入: 学生数N, 朋友关系列表edges
+输出: 朋友圈数量count, 每个朋友圈的学生列表
+
+1. 初始化图graph[N], visited[N] = false
+2. 对于edges中的每条边(u,v):
+   - graph[u].添加(v)
+   - graph[v].添加(u)
+3. 初始化count = 0
+4. 对于每个学生i从0到N-1:
+   - 如果visited[i]为false:
+     a) count++
+     b) 创建空列表component
+     c) DFS(i, graph, visited, component)
+     d) 记录当前component
+5. 返回count和所有components
+
+过程 DFS(vertex, graph, visited, component):
+1. visited[vertex] = true
+2. component.添加(vertex)
+3. 对于graph[vertex]中的每个邻居neighbor:
+   - 如果visited[neighbor]为false:
+     DFS(neighbor, graph, visited, component)

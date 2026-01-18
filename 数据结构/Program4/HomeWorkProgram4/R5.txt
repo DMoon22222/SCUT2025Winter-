@@ -1,0 +1,29 @@
+算法: 迪杰斯特拉最短路径
+输入: 图G, 源点src, 目标点dest
+输出: 从src到dest的最小花费路径
+
+1. 初始化:
+   - dist[]: 所有顶点到src的距离，初始为无穷大
+   - prev[]: 前驱顶点数组
+   - visited[]: 访问标记数组
+   - dist[src] = 0
+
+2. 创建优先队列pq，按距离排序
+3. pq.插入(src, 0)
+
+4. 当pq非空:
+   - u = pq.弹出最小距离的顶点
+   - 如果visited[u]为true，继续
+   - visited[u] = true
+
+   - 对于每个邻居v:
+     a) 计算新距离 = dist[u] + weight(u, v)
+     b) 如果新距离 < dist[v]:
+        i) dist[v] = 新距离
+        ii) prev[v] = u
+        iii) pq.插入(v, dist[v])
+
+5. 从dest回溯构建路径
+6. 返回路径和总花费
+时间复杂度：O((V+E)logV)，使用优先队列优化
+空间复杂度：O(V²)（邻接矩阵）或O(V+E)（邻接表）
